@@ -107,7 +107,10 @@ RUN if [ "$LUCEE_VERSION" \> "5.3.6" ] || [ "$LUCEE_VERSION" == "CUSTOM" ] ; the
         && sleep 20 \
         && catalina.sh stop ; \
     fi
-RUN chgrp -R 0 /srv/www && \
-    chmod -R g=u /srv/www
 # copy additional lucee-server and lucee-web after the warmup completes
 COPY resources/target-envs/${TARGET_ENV} ${CATALINA_BASE}
+
+RUN chgrp -R 0 /srv/www && \
+    chmod -R g=u /srv/www && \
+    chown -R 0 /srv/www/app/webroot && \
+    chmod -R ug+rwx /srv/www/app/webroot
