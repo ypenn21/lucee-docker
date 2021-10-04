@@ -43,26 +43,26 @@ spec:
     params:
     - name: IMAGE
       value: $(params.IMAGE)
+    - name: TLSVERIFY
+      value: "false"    
     workspaces:
     - name: source
       workspace: shared-workspace
     runAfter:
     - fetch-repository
-  - name: apply-manifests
+  - name: helm-upgrade
     taskRef:
-      name: apply-manifests
+      name: helm-upgrade-from-source
+      kind: ClusterTask
+    params:
+    - name: charts_dir
+      value: helm/app
+    - name: release_name
+      value: lucee-app
+    - name: release_namespace
+      value: tbox-pipeline
     workspaces:
     - name: source
       workspace: shared-workspace
     runAfter:
     - build-image
-  - name: update-deployment
-    taskRef:
-      name: update-deployment
-    params:
-    - name: deployment
-      value: $(params.deployment-name)
-    - name: IMAGE
-      value: $(params.IMAGE)
-    runAfter:
-    - apply-manifests
