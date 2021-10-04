@@ -1,0 +1,76 @@
+apiVersion: v1
+items:
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    labels:
+      app: lucee-docker
+      manager: oc
+      operation: Update
+      manager: openshift-controller-manager
+      operation: Update
+    name: lucee-docker
+    namespace: lucee-app
+  spec:
+    replicas: {{ .Values.replicaCount }}
+    selector:
+      app: lucee-docker
+      deploymentconfig: lucee-docker
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: lucee-docker
+          deploymentconfig: lucee-docker
+      spec:
+        containers:
+        - env:
+          - name: LUCEE_PRESERVE_CASE
+            value: "true"
+          - name: CATALINA_OPTS
+            value: '"-Xmx4g"'
+          image: image-registry.openshift-image-registry.svc:5000/lucee-app/lucee-docker@sha256:b461036c3cc045c2e14b49dd7f953f5608934770e17d304ddef29665f5f69d35
+          imagePullPolicy: Always
+          name: lucee-docker
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - lucee-docker
+        from:
+          kind: ImageStreamTag
+          name: lucee-docker:latest
+          namespace: lucee-app
+        lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/lucee-app/lucee-docker@sha256:b461036c3cc045c2e14b49dd7f953f5608934770e17d304ddef29665f5f69d35
+      type: ImageChange
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
