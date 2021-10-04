@@ -39,11 +39,11 @@ FROM tomcat:$TOMCAT_IMAGE_TAG AS Lucee
 ARG LUCEE_VERSION=5.3.8.139-RC
 
 # Allow to specify the Lucee Admin Password at build time with --build-arg LUCEE_ADMIN_PASSWORD=changeit
-ARG LUCEE_ADMIN_PASSWORD=
+ARG LUCEE_ADMIN_PASSWORD=changeit
 
 # Install optional Lucee extensions in the comma separated format {extension-uuid};name=X;label=XY;version=m.n
 #   e.g. "3F9DFF32-B555-449D-B0EB5DB723044045;name=WebSocket"
-ARG LUCEE_EXTENSIONS=
+ARG LUCEE_EXTENSIONS=3F9DFF32-B555-449D-B0EB5DB723044045;name=WebSocket
 
 # Pass JVM options when Tomcat starts, e.g. --build-arg CATALINA_OPTS="-Xmx2g"
 ARG CATALINA_OPTS=
