@@ -60,7 +60,7 @@ spec:
     - name: release_name
       value: lucee-app
     - name: release_namespace
-      value: tbox-pipeline
+      value: lucee-app
     workspaces:
     - name: source
       workspace: shared-workspace
