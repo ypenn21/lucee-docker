@@ -2,7 +2,8 @@
 # pipeline
 
 ```sh
-export namespace=tbox-pipeline
+export namespace=lucee-pipeline
+helm install -i lucee-pipeline helm/pipeline -n ${namespace} --create-namespace
 helm upgrade -i lucee-pipeline helm/pipeline -n ${namespace} --create-namespace
 ```
 
