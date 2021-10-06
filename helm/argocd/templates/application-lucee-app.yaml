@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: helm/app
-    repoURL: 'https://github.com/trevorbox/lucee-docker.git'
+    repoURL: 'https://github.com/ypenn21/lucee-docker.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
