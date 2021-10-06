@@ -1,12 +1,12 @@
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: edit
+  name: edit-app
 subjects:
   - kind: ServiceAccount
     name: pipeline
-    namespace: lucee-pipeline
+    namespace: {{ .Values.appNamespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: edit

@@ -60,7 +60,7 @@ spec:
     - name: release_name
       value: lucee-app
     - name: release_namespace
-      value: lucee-app
+      value: {{ .Values.appNamespace }}
     workspaces:
     - name: source
       workspace: shared-workspace
