@@ -1,13 +1,13 @@
-kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
-  name: 'system:image-puller:pipeline'
-  namespace: {{ .Values.appNamespace }}
+  name: system:image-puller
+  namespace:  {{ .Values.pipelineNamespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:image-puller
 subjects:
   - kind: ServiceAccount
     name: lucee-app
-    namespace: {{ .Values.pipelineNamespace }}
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: 'system:image-puller'
+    namespace: {{ .Values.appNamespace }}
