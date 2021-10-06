@@ -1,0 +1,2 @@
+argocd:
+  namespace: example-argocd
