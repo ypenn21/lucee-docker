@@ -16,7 +16,6 @@ Manually add the tenant namespace in the secret *example-default-cluster-config*
 
 ```sh
 oc patch secret example-default-cluster-config -n ${argocd_namespace} -p "{\"stringData\":{\"namespaces\":\"${argocd_namespace},${argocd_tenant_namespace}\"}}"
-
 ```
 
 Create role and rolebindings in tenant namespace to allow ServiceAccount in argocd namespace to create objects.

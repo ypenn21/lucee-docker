@@ -12,3 +12,5 @@ spec:
     repoURL: 'https://github.com/trevorbox/lucee-docker.git'
     targetRevision: HEAD
   project: default
+  syncPolicy:
+    automated: {}
