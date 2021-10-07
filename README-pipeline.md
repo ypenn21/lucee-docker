@@ -5,6 +5,7 @@
 export namespace=lucee-pipeline
 export appnamespace=lucee-app 
 oc new-project $appnamespace
+# if you are running it for the first time run helm install otherwise run helm upgrade
 helm install lucee-pipeline helm/pipeline --set appNamespace=${appnamespace} -n ${namespace}  --create-namespace
 helm upgrade -i lucee-pipeline helm/pipeline --set appNamespace=${appnamespace} -n ${namespace} --create-namespace
 ```
