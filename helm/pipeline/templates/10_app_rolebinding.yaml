@@ -10,4 +10,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: lucee-app
-    namespace: {{ .Values.appNamespace.name }}
+    namespace: {{ .Values.appNamespace }}

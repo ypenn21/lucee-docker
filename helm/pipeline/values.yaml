@@ -1,6 +1,2 @@
-pipelineNamespace: lucee-pipeline4
-appNamespace:
-  # Specifies whether a project should be created
-  create: true
-  # The name of the service account to use.
-  name: "lucee-app3"
+appNamespace: lucee-app
+pipelineNamespace: lucee-pipeline
