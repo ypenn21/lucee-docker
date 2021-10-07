@@ -1,0 +1,7 @@
+{{- if .Values.appNamespace.create -}}
+apiVersion: project.openshift.io/v1
+displayName: {{ .Values.appNamespace.name }}
+kind: ProjectRequest
+metadata:
+  name: {{ .Values.appNamespace.name }}
+{{- end }}

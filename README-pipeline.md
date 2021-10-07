@@ -3,8 +3,8 @@
 
 ```sh
 export namespace=lucee-pipeline
-helm install lucee-pipeline helm/pipeline -n ${namespace} --create-namespace
-helm upgrade -i lucee-pipeline helm/pipeline -n ${namespace} --create-namespace
+helm install lucee-pipeline helm/pipeline --set appNamespace.create=true -n ${namespace}  --create-namespace
+helm upgrade -i lucee-pipeline helm/pipeline --set appNamespace.create=false -n ${namespace} --create-namespace
 ```
 
 ```sh
