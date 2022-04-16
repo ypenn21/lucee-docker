@@ -8,9 +8,10 @@ spec:
     namespace: {{ .Values.argocd.tenant.namespace }}
     server: 'https://kubernetes.default.svc'
   source:
-    path: helm/app
-    valueFiles:
+    helm:
+      valueFiles:
       - values-production.yaml
+    path: helm/app
     repoURL: 'https://github.com/ypenn21/lucee-docker.git'
     targetRevision: HEAD
   project: default
